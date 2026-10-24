@@ -68,11 +68,11 @@ const views = {
   },
   login() {
     board = null; $('#view').className = '';
-    $('#view').innerHTML = `<div class="card auth"><div style="text-align:center;font-size:48px">📋</div><h2 id="t" style="text-align:center">Log in to TaskFlow</h2><label>Username</label><input id="u"><label>Password</label><input id="p" type="password"><p class="err" id="err"></p><button class="btn" id="go" style="width:100%">Log in</button><p class="muted" style="text-align:center">New here? <a href="#" id="sw">Create an account</a></p></div>`;
+    $('#view').innerHTML = `<div class="card auth"><div style="text-align:center;font-size:48px">📋</div><h2 id="t" style="text-align:center">Log in to TaskFlow</h2><label>Username</label><input id="u"><label>Password</label><input id="p" type="password"><p class="err" id="err"></p><button class="btn" id="go" style="width:100%">Log in</button><p class="muted" style="text-align:center"><span id="swl">New here?</span> <a href="#" id="sw">Create an account</a></p></div>`;
     let mode = 'login';
-    $('#sw').onclick = (e) => { e.preventDefault(); mode = mode === 'login' ? 'register' : 'login'; $('#t').textContent = mode === 'login' ? 'Log in to TaskFlow' : 'Create your account'; $('#go').textContent = mode === 'login' ? 'Log in' : 'Sign up'; $('#sw').textContent = mode === 'login' ? 'Create an account' : 'Log in'; };
+    $('#sw').onclick = (e) => { e.preventDefault(); mode = mode === 'login' ? 'register' : 'login'; $('#t').textContent = mode === 'login' ? 'Log in to TaskFlow' : 'Create your account'; $('#go').textContent = mode === 'login' ? 'Log in' : 'Sign up'; $('#sw').textContent = mode === 'login' ? 'Create an account' : 'Log in'; $('#swl').textContent = mode === 'login' ? 'New here?' : 'Already have an account?'; };
     const go = async () => { try { const s = await api('/' + mode, { method: 'POST', body: { username: $('#u').value, password: $('#p').value } }); localStorage.setItem('tf_session', JSON.stringify(s)); location.hash = '#/'; route(); } catch (e) { $('#err').textContent = e.message; } };
-    $('#go').onclick = go; $('#p').onkeydown = (e) => e.key === 'Enter' && go();
+    $('#go').onclick = go; $('#p').onkeydown = (e) => { if (e.key === 'Enter') go(); };
   },
 };
 
@@ -132,7 +132,7 @@ function showTask(id) {
   $('#ts', bg).onclick = async () => { await api('/tasks/' + id, { method: 'PATCH', body: { title: $('#tt').value, column_id: Number($('#tc').value), assignee_id: $('#ta').value ? Number($('#ta').value) : null, priority: $('#tp').value, due_date: $('#td').value, description: $('#tdesc').value } }); close(); };
   $('#tdel', bg).onclick = async () => { if (confirm('Delete this card?')) { await api('/tasks/' + id, { method: 'DELETE' }); close(); } };
   const send = async () => { if (!$('#cin').value.trim()) return; await api(`/tasks/${id}/comments`, { method: 'POST', body: { content: $('#cin').value } }); $('#cin').value = ''; };
-  $('#cs', bg).onclick = send; $('#cin', bg).onkeydown = (e) => e.key === 'Enter' && send();
+  $('#cs', bg).onclick = send; $('#cin', bg).onkeydown = (e) => { if (e.key === 'Enter') send(); };
   loadComments(id);
 }
 function route() {
