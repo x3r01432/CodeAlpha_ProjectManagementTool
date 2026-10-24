@@ -1,0 +1,44 @@
+*{box-sizing:border-box}
+:root{--bg:#f5f7fb;--card:#fff;--ink:#1d2433;--muted:#6b7385;--accent:#0079bf;--accent2:#e4f0f6;--line:#e3e7ef;--ok:#16a34a;--bad:#dc2626}
+body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;background:var(--bg);color:var(--ink)}
+a{color:var(--accent);text-decoration:none}
+header{background:var(--card);border-bottom:1px solid var(--line);padding:12px 24px;display:flex;align-items:center;gap:18px;position:sticky;top:0;z-index:5}
+header .brand{font-weight:800;font-size:20px;color:var(--ink)}
+header nav{white-space:nowrap;display:flex;gap:14px;margin-left:auto;align-items:center}
+main{max-width:1100px;margin:24px auto;padding:0 20px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:18px}
+.btn{background:var(--accent);color:#fff;border:0;border-radius:10px;padding:9px 16px;font-weight:600;cursor:pointer;font-size:14px}
+.btn.ghost{background:var(--accent2);color:var(--accent)}
+.btn.danger{background:#fee2e2;color:var(--bad)}
+.btn:disabled{opacity:.5;cursor:default}
+input,textarea,select{width:100%;padding:10px 12px;border:1px solid var(--line);border-radius:10px;font:inherit;background:#fff}
+textarea{resize:vertical}
+label{font-size:13px;color:var(--muted);display:block;margin:10px 0 4px}
+.muted{color:var(--muted)}
+.row{display:flex;gap:12px;align-items:center}
+.between{justify-content:space-between}
+.badge{display:inline-block;background:var(--accent2);color:var(--accent);border-radius:99px;padding:2px 10px;font-size:12px;font-weight:600}
+.err{color:var(--bad);font-size:14px;min-height:20px}
+.auth{max-width:380px;margin:60px auto}
+h1,h2,h3{margin:.2em 0 .5em}
+.toast{position:fixed;right:20px;bottom:20px;background:#111827;color:#fff;padding:12px 18px;border-radius:10px;box-shadow:0 8px 30px #0003;z-index:50}
+main.wide{max-width:none;margin:0;padding:18px 24px}
+.board{display:flex;gap:14px;align-items:flex-start;overflow-x:auto;padding-bottom:20px}
+.col{background:#ebecf0;border-radius:12px;width:280px;flex:none;padding:10px;max-height:calc(100vh - 190px);display:flex;flex-direction:column}
+.col h3{font-size:15px;margin:4px 6px 10px;display:flex;justify-content:space-between}
+.col .list{min-height:40px;overflow-y:auto;flex:1;border-radius:8px;transition:background .15s}
+.col .list.over{background:#d6e4f0}
+.task{background:#fff;border-radius:8px;padding:10px;margin-bottom:8px;box-shadow:0 1px 0 #091e4240;cursor:grab;font-size:14px}
+.task:hover{box-shadow:0 2px 6px #091e4240}.task.dragging{opacity:.4}
+.task .meta{display:flex;gap:8px;align-items:center;margin-top:8px;font-size:12px;color:var(--muted)}
+.pri{border-radius:4px;padding:1px 7px;font-size:11px;font-weight:700;color:#fff}.pri.high{background:#eb5a46}.pri.medium{background:#f2a33a}.pri.low{background:#61bd4f}
+.chip{display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;border-radius:50%;background:var(--accent);color:#fff;font-size:11px;font-weight:700;text-transform:uppercase}
+.addtask{width:100%;background:none;border:0;text-align:left;padding:8px;color:var(--muted);cursor:pointer;border-radius:8px}.addtask:hover{background:#dfe1e6}
+.modal-bg{position:fixed;inset:0;background:#0007;display:flex;align-items:flex-start;justify-content:center;padding-top:60px;z-index:20}
+.modal{background:#f4f5f7;border-radius:12px;width:640px;max-width:95vw;padding:22px;max-height:85vh;overflow:auto}
+.bell{position:relative;cursor:pointer;font-size:20px}.bell .n{position:absolute;top:-6px;right:-8px;background:#eb5a46;color:#fff;border-radius:99px;font-size:11px;padding:0 6px}
+.notes{position:absolute;right:20px;top:56px;width:340px;background:#fff;border:1px solid var(--line);border-radius:12px;box-shadow:0 10px 30px #0002;max-height:420px;overflow:auto;z-index:30}
+.notes div{padding:10px 14px;border-bottom:1px solid var(--line);font-size:14px}.notes .unread{background:#e4f0f6}
+.members{display:flex;gap:4px;align-items:center}
+.live{font-size:12px;color:var(--ok)}
